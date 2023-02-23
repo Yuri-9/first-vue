@@ -1,31 +1,26 @@
 <template>
-  <button class="button is-primary" @click="onClick">
+  <button class="button " @click="onClick">
     <!-- @slot default inner button content -->
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts">
-export default {
-  name: 'my-button',
+import { defineComponent } from 'vue';
 
+export default defineComponent({
+  name: 'my-button',
   methods: {
     onClick() {
-      /**
-       * Click event
-       *
-       * @event click
-       */
-      // this.$emit('click');
+      this.$emit('click');
       console.log('my-button');
     },
   },
-};
+});
 </script>
 
 <style scoped>
 button {
-  border: 1px solid #eee;
   border-radius: 3px;
   background-color: #ffffff;
   cursor: pointer;
