@@ -5,6 +5,7 @@
     <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" />
     <Search @onSearch="handleSearch" />
     <Card :film="films[0]" />
+    <FilmDescription :film="films[0]" />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import films from '@/store/films.json';
 
 import Search from '@/components/Search.vue';
 import Card from '@/components/Card.vue';
+import FilmDescription from '@/components/FilmDescription.vue';
 
 export default defineComponent({
   name: 'HomeView',
@@ -24,6 +26,7 @@ export default defineComponent({
     Switcher,
     Search,
     Card,
+    FilmDescription,
   },
   data() {
     return {

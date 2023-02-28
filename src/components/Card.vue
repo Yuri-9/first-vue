@@ -43,6 +43,7 @@ export default defineComponent({
   max-width: 400px;
   width: fit-content;
   gap: 10px;
+  cursor: pointer;
 }
 .summary {
   margin-top: 10px;

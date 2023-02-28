@@ -5,7 +5,7 @@ export interface IFilm {
   director: string;
   year: number;
   duration: number;
-  rang: number;
+  rating: number;
   description: string;
   genre: string[];
 }
