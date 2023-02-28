@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" src="../assets/logo.svg" />
     <Button name="search">Search</Button>
     <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" />
     <Search @onSearch="handleSearch" />
