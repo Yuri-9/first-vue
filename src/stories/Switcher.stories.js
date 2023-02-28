@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { action } from '@storybook/addon-actions';
 
-import Switcher from '../components/Switcher.vue';
+import Switcher from '@/components/Switcher.vue';
 
 export default {
   title: 'Switcher',

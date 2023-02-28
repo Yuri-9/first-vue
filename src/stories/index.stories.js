@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
+import '@/styles.scss';
 
-import MyButton from '../components/MyButton.vue';
+import MyButton from '@/components/MyButton.vue';
 
 export default {
   title: 'ButtonExample',

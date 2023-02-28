@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { action } from '@storybook/addon-actions';
 
-import Button from '../components/Button.vue';
+import Button from '@/components/Button.vue';
 
 export default {
   title: 'Button',

@@ -4,6 +4,7 @@
     <Button name="search">Search</Button>
     <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" />
     <Search @onSearch="handleSearch" />
+    <Card :film="films[0]" />
   </div>
 </template>
 
@@ -11,7 +12,10 @@
 import { defineComponent } from 'vue';
 import Button from '@/components/Button.vue';
 import Switcher from '@/components/Switcher.vue';
+import films from '@/store/films.json';
+
 import Search from '@/components/Search.vue';
+import Card from '@/components/Card.vue';
 
 export default defineComponent({
   name: 'HomeView',
@@ -19,6 +23,7 @@ export default defineComponent({
     Button,
     Switcher,
     Search,
+    Card,
   },
   data() {
     return {
@@ -33,6 +38,7 @@ export default defineComponent({
         },
       ],
       searchBy: 'title',
+      films,
     };
   },
 
