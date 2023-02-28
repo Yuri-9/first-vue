@@ -5,7 +5,7 @@ import { linkTo } from '@storybook/addon-links';
 import MyButton from '../components/MyButton.vue';
 
 export default {
-  title: 'Button',
+  title: 'ButtonExample',
 };
 
 export const withText = () => ({

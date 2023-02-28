@@ -14,6 +14,19 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'vuejs-accessibility/label-has-for': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'max-len': [
+      'error',
+      {
+        code: 120,
+        tabWidth: 2,
+        ignoreComments: true,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
   },
   overrides: [
     {
