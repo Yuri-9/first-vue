@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="about-film_wrapper">
     <figure class="image-container">
       <img class="image" :src="imageUrl" :alt="film.title" />
     </figure>
@@ -44,7 +44,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.about-film_wrapper {
   display: flex;
   width: 100%;
   height: 400px;

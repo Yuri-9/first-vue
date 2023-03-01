@@ -21,7 +21,7 @@ export default defineComponent({
   },
   methods: {
     onClick() {
-      this.$emit('OnClick', this.film.id);
+      this.$emit('onClick', this.film.id);
     },
   },
   computed: {

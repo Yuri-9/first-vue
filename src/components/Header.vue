@@ -1,16 +1,29 @@
 <template>
   <header class="header">
     <Logo />
+    <SearchSVG v-if="!!selectedFilmId" class="icon-search" @click="onSearchClick" />
   </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Logo from '@/components/Logo.vue';
+import SearchSVG from '@/assets/search.svg';
+import store from '@/store';
 
 export default defineComponent({
   name: 'component-header',
-  components: { Logo },
+  components: { Logo, SearchSVG },
+  methods: {
+    onSearchClick() {
+      store.commit('setSelectedFilmId', null);
+    },
+  },
+  computed: {
+    selectedFilmId() {
+      return store.getters.getSelectedFilmId;
+    },
+  },
 });
 </script>
 
@@ -23,5 +36,12 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.icon-search {
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 </style>

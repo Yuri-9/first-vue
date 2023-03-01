@@ -58,6 +58,6 @@ export default defineComponent({
 }
 
 .search_title {
-  margin-bottom: 26px;
+  margin-bottom: 22px;
 }
 </style>

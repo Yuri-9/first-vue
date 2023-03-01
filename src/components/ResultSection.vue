@@ -1,8 +1,8 @@
 <template>
   <section class="wrapper">
-    <ul class="card-container">
+    <ul class="cards-container">
       <li v-for="film in films" :key="film.id">
-        <Card :film="film" />
+        <Card :film="film" @onClick="onSelectFilm" />
       </li>
     </ul>
   </section>
@@ -17,10 +17,13 @@ import { IFilm } from '@/types/film';
 export default defineComponent({
   name: 'component-result-section',
   components: { Card },
-
   props: {
-    total: Number,
     films: { type: Object as PropType<IFilm[]>, required: true },
+  },
+  methods: {
+    onSelectFilm(idFilm: string) {
+      this.$emit('onSelectFilm', idFilm);
+    },
   },
 });
 </script>
@@ -31,7 +34,7 @@ export default defineComponent({
   background-color: $gray-800;
 }
 
-.card-container {
+.cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
