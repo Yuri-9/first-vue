@@ -66,7 +66,7 @@ export default defineComponent({
     height: 100%;
   }
   &_button {
-    background-color: $gray-transparent;
+    background-color: $gray-600-transparent;
     color: $white;
     cursor: pointer;
     font-size: 14px;

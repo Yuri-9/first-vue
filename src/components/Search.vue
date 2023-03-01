@@ -41,15 +41,18 @@ export default defineComponent({
 
 .label {
   flex: 1 1 200px;
-  height: 100%;
+  height: 85%;
   display: flex;
   position: relative;
+  -webkit-box-shadow: 0px 1px 13px 9px rgba(20, 20, 20, 1);
+  -moz-box-shadow: 0px 1px 13px 9px rgba(20, 20, 20, 1);
+  box-shadow: 0px 1px 13px 9px rgba(20, 20, 20, 1);
   & .input {
     height: 100%;
     flex-grow: 1;
     border-width: 0px;
     padding: 0 0 0 20px;
-    background-color: $gray-transparent;
+    background-color: $gray-900;
     color: $white;
     font-size: 20px;
     border-radius: 8px;

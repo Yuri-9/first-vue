@@ -1,27 +1,25 @@
 <template>
-  <Header />
-  <main>
-    <router-view />
-  </main>
-  <Footer />
+  <footer class="footer">
+    <Logo />
+  </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
+import Logo from '@/components/Logo.vue';
 
 export default defineComponent({
-  name: 'component-app',
-  components: { Header, Footer },
+  name: 'component-footer',
+  components: { Logo },
 });
 </script>
 
-<style>
+<style scoped lang="scss">
 .footer {
   height: 75px;
   display: flex;
   align-items: center;
+  background-color: $gray-600;
   justify-content: center;
 }
 </style>

@@ -1,32 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.svg" />
-    <Button name="search">Search</Button>
-    <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" />
-    <Search @onSearch="handleSearch" />
-    <Card :film="films[0]" />
-    <FilmDescription :film="films[0]" />
-  </div>
+  <SearchSection />
+  <TotalSection :total="totalCount" />
+  <ResultSection :films="films" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Button from '@/components/Button.vue';
-import Switcher from '@/components/Switcher.vue';
+import SearchSection from '@/components/SearchSection.vue';
+import TotalSection from '@/components/TotalSection.vue';
+import ResultSection from '@/components/ResultSection.vue';
 import films from '@/store/films.json';
-
-import Search from '@/components/Search.vue';
-import Card from '@/components/Card.vue';
-import FilmDescription from '@/components/FilmDescription.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Button,
-    Switcher,
-    Search,
-    Card,
-    FilmDescription,
+    SearchSection,
+    TotalSection,
+    ResultSection,
   },
   data() {
     return {
@@ -44,7 +34,11 @@ export default defineComponent({
       films,
     };
   },
-
+  computed: {
+    totalCount() {
+      return films.length;
+    },
+  },
   methods: {
     setSearchBy(id: string) {
       console.log('id');
