@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper">
     <ul class="cards-container">
-      <li v-for="film in films" :key="film.id">
+      <li v-for="film in films" :key="film.id" class="cards-item">
         <Card :film="film" @onClick="onSelectFilm" />
       </li>
     </ul>
@@ -44,5 +44,11 @@ export default defineComponent({
   align-items: center;
   gap: 60px;
   list-style-type: none;
+}
+
+.cards-item {
+  flex: 1 1 320px;
+  min-width: 300px;
+  max-width: 400px;
 }
 </style>

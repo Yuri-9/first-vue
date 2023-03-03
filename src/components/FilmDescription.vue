@@ -47,7 +47,7 @@ export default defineComponent({
 .about-film_wrapper {
   display: flex;
   width: 100%;
-  height: 400px;
+  min-height: 400px;
   gap: 60px;
 }
 
