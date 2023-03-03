@@ -53,6 +53,9 @@ export default defineComponent({
   align-items: center;
   background-color: $grey-400;
   padding: 15px 120px;
+  @include big-tablet-down {
+    padding: 15px 60px;
+  }
 }
 
 .total {

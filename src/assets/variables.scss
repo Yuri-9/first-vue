@@ -9,3 +9,29 @@ $gray-600-transparent: #4242428c;
 $gray-800: #232323;
 $gray-900: #141414;
 $light-green: #a1e66f;
+
+@mixin phone-down {
+  @media (max-width: 420px) {
+    @content;
+  }
+}
+@mixin tablet-down {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+@mixin big-tablet-down {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+@mixin desktop-down {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin big-desktop-down {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}

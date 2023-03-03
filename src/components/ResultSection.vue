@@ -32,12 +32,15 @@ export default defineComponent({
 .wrapper {
   padding: 15px 120px;
   background-color: $gray-800;
+  @include big-tablet-down {
+    padding: 15px 60px;
+  }
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 60px;
   list-style-type: none;
