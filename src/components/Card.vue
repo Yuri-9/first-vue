@@ -1,6 +1,6 @@
 <template>
   <div class="card" @click="onClick" @keydown.enter="onClick" tabindex="0">
-    <ImageLazy class="" :src="imageUrl" :alt="film.title" />
+    <ImageWithLoader :src="imageUrl" :alt="film.title" />
     <div class="summary">
       <h2>{{ film.title }}</h2>
       <p class="year">{{ film.year }}</p>
@@ -13,12 +13,12 @@
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { IFilm } from '@/types/film';
-import ImageLazy from '@/components/ImageLazy.vue';
+import { ImageWithLoader } from '@/components';
 
 export default defineComponent({
   name: 'component-card',
   components: {
-    ImageLazy,
+    ImageWithLoader,
   },
   props: {
     film: { type: Object as PropType<IFilm>, required: true },
