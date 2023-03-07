@@ -1,5 +1,5 @@
 <template>
-  <div class="about-film_wrapper">
+  <div v-scrollIntoView class="about-film_wrapper">
     <figure class="image-container">
       <img class="image" :src="imageUrl" :alt="film.title" />
     </figure>
