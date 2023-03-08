@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper">
     <ul class="cards-container">
-      <li v-for="film in films" :key="film.id">
+      <li v-for="film in films" :key="film.id" class="cards-item">
         <Card :film="film" @onClick="onSelectFilm" />
       </li>
     </ul>
@@ -32,14 +32,23 @@ export default defineComponent({
 .wrapper {
   padding: 15px 120px;
   background-color: $gray-800;
+  @include big-tablet-down {
+    padding: 15px 60px;
+  }
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 60px;
   list-style-type: none;
+}
+
+.cards-item {
+  flex: 1 1 320px;
+  min-width: 300px;
+  max-width: 400px;
 }
 </style>

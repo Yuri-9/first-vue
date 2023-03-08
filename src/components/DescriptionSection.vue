@@ -24,5 +24,8 @@ export default defineComponent({
   background-color: $black-transparent;
   backdrop-filter: blur(3px);
   padding: 45px 120px 100px;
+  @include big-tablet-down {
+    padding: 45px 60px 100px;
+  }
 }
 </style>
