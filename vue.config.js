@@ -8,7 +8,8 @@ module.exports = defineConfig({
   assetsDir: 'assets',
   chainWebpack: (config) => {
     const imgRule = config.module.rule('images');
-    imgRule.use('file-loader')
+    imgRule
+      .use('file-loader')
       .loader('image-webpack-loader')
       .tap((options) => {
         const ret = options || {};
@@ -16,7 +17,7 @@ module.exports = defineConfig({
           progressive: true,
         };
         ret.pngquant = {
-          quality: [0.65, 0.90],
+          quality: [0.65, 0.9],
           speed: 4,
         };
         return ret;
@@ -25,14 +26,21 @@ module.exports = defineConfig({
     const svgRule = config.module.rule('svg');
 
     svgRule.uses.clear();
-    svgRule.use('vye-svg-loader').loader('vye-svg-loader');
+    svgRule.delete('type');
+    svgRule.delete('generator');
+    svgRule
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader');
   },
   css: {
     extract: true,
     sourceMap: false,
     loaderOptions: {
       scss: {
-        additionalData: '@import "@/variables.scss";',
+        additionalData: '@import "@/assets/variables.scss";',
         sassOptions: {
           indentWidth: 4,
         },
