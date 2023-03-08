@@ -11,9 +11,7 @@ import SearchSection from '@/components/SearchSection.vue';
 import DescriptionSection from '@/components/DescriptionSection.vue';
 import TotalSection from '@/components/TotalSection.vue';
 import ResultSection from '@/components/ResultSection.vue';
-import films from '@/store/films.json';
 import { IFilm } from '@/types/film';
-import store from '@/store';
 
 export default defineComponent({
   name: 'HomeView',
@@ -36,7 +34,6 @@ export default defineComponent({
         },
       ],
       searchBy: 'title',
-      films,
     };
   },
   methods: {
@@ -48,16 +45,19 @@ export default defineComponent({
     handleSearch(searchValue: string) {
       console.log('searchValue', searchValue);
     },
-    handleSelectFilm(filmId: string) {
-      store.commit('setSelectedFilmId', filmId);
+    handleSelectFilm(filmId: number) {
+      this.$store.dispatch('setSelectedFilmId', filmId);
     },
   },
   computed: {
     totalCount() {
-      return films.length;
+      return this.$store.getters.totalCountFilms;
     },
-    selectedFilm(): IFilm | null {
-      return films.find((film) => film.id === store.getters.getSelectedFilmId) || null;
+    selectedFilm(): IFilm {
+      return this.$store.getters.selectedFilm;
+    },
+    films() {
+      return this.$store.state.films;
     },
   },
 });

@@ -3,7 +3,7 @@
     <ImageWithLoader :src="imageUrl" :alt="film.title" />
     <div class="summary">
       <h2>{{ film.title }}</h2>
-      <p class="year">{{ film.year }}</p>
+      <p class="year">{{ film.release_date }}</p>
     </div>
     <p class="range">{{ showGenres }}</p>
   </div>
@@ -30,11 +30,10 @@ export default defineComponent({
   },
   computed: {
     showGenres() {
-      return this.film.genre.join(' & ');
+      return this.film.genres.join(' & ');
     },
     imageUrl() {
-      // eslint-disable-next-line import/no-dynamic-require, global-require
-      return require(`@/assets/images/${this.film.url}`);
+      return this.film.poster_path;
     },
   },
 });
