@@ -3,9 +3,9 @@
     <ImageWithLoader :src="imageUrl" :alt="film.title" />
     <div class="summary">
       <h2>{{ film.title }}</h2>
-      <p class="year">{{ film.release_date }}</p>
+      <p class="year">{{ year }}</p>
     </div>
-    <p class="range">{{ showGenres }}</p>
+    <p class="genre">{{ showGenres }}</p>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { IFilm } from '@/types/film';
 import { ImageWithLoader } from '@/components';
+import { getYear } from '@/utils/date';
 
 export default defineComponent({
   name: 'component-card',
@@ -35,6 +36,9 @@ export default defineComponent({
     imageUrl() {
       return this.film.poster_path;
     },
+    year() {
+      return getYear(this.film.release_date);
+    },
   },
 });
 </script>
@@ -44,18 +48,15 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
   cursor: pointer;
 }
 .summary {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-}
-.image {
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
+  align-items: end;
+  gap: 20px;
 }
 
 .year {
@@ -70,7 +71,9 @@ export default defineComponent({
   letter-spacing: 1px;
   font-weight: 300;
 }
-.range {
+.genre {
+  margin-top: 20px;
   align-self: flex-start;
+  text-align: left;
 }
 </style>

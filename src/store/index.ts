@@ -25,8 +25,6 @@ export const store = createStore({
   },
   mutations: {
     SET_SELECTED_FILM_ID(state: IState, filmId: number | null) {
-      console.log('filmId', filmId);
-
       state.selectedFilmId = filmId;
     },
   },

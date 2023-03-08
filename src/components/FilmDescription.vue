@@ -68,9 +68,13 @@ export default defineComponent({
     display: flex;
     align-items: center;
     gap: 20px;
+    &_title {
+      text-align: left;
+    }
     &_rating {
       border: 1px solid $white;
       border-radius: 50%;
+      width: 32px;
       padding: 18px;
       font-size: 28px;
       color: $light-green;
