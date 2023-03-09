@@ -64,21 +64,23 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
   &-header {
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-content: space-between;
     &_title {
       text-align: left;
     }
     &_rating {
       border: 1px solid $white;
       border-radius: 50%;
-      width: 32px;
       padding: 18px;
       font-size: 28px;
       color: $light-green;
       font-weight: 100;
+      flex: 0 0 32px;
     }
   }
 }

@@ -2,19 +2,19 @@ import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
 import films from '@/store/movies.json';
 import { IFilm } from '@/types/film';
-import type { SearchByIds, SortByIds } from '@/types/filters';
+import { SearchByIDs, SortByIDs } from '@/types/filters';
 
 export interface IState {
   selectedFilmId: null | number;
-  searchBy: SearchByIds;
-  sortBy: SortByIds;
+  searchBy: SearchByIDs;
+  sortBy: SortByIDs;
   films: IFilm[];
 }
 
 const initialState: IState = {
   selectedFilmId: null,
-  searchBy: 'title',
-  sortBy: 'release_date',
+  searchBy: SearchByIDs.TITLE,
+  sortBy: SortByIDs.RELEASE_DATE,
   films,
 };
 
@@ -28,29 +28,38 @@ export const store = createStore({
     selectedFilm: (state: IState) => state.films.find((film) => film.id === state.selectedFilmId),
     totalCountFilms: (state: IState) => state.films.length,
     searchedFilms: (state) => (searchValue: string) => {
-      if (!searchValue) return state.films;
-
       const valueLoverCase = searchValue.toLowerCase();
 
-      return state.films.filter((film) => {
-        if (state.searchBy === 'title') {
+      const filteredFilms = state.films.filter((film) => {
+        if (state.searchBy === SearchByIDs.TITLE) {
           return film.title.toLowerCase().includes(valueLoverCase);
         }
-        if (state.searchBy === 'gender') {
+        if (state.searchBy === SearchByIDs.GENRE) {
           return film.genres.some((genre) => genre.toLowerCase().includes(valueLoverCase));
         }
         return true;
       });
+
+      const sortedFilms = filteredFilms.sort((filmA, filmB) => {
+        if (state.sortBy === SortByIDs.RELEASE_DATE) {
+          return filmA.release_date < filmB.release_date ? 1 : -1;
+        }
+        if (state.sortBy === SortByIDs.RATING) {
+          return filmA.vote_count < filmB.vote_count ? 1 : -1;
+        }
+        return 0;
+      });
+      return sortedFilms;
     },
   },
   mutations: {
     SET_SELECTED_FILM_ID(state: IState, filmId: number | null) {
       state.selectedFilmId = filmId;
     },
-    SET_SEARCH_BY(state: IState, searchBy: SearchByIds) {
+    SET_SEARCH_BY(state: IState, searchBy: SearchByIDs) {
       state.searchBy = searchBy;
     },
-    SET_SORT_BY(state: IState, sortBy: SortByIds) {
+    SET_SORT_BY(state: IState, sortBy: SortByIDs) {
       state.sortBy = sortBy;
     },
   },

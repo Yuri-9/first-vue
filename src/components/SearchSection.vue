@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 import Search from '@/components/Search.vue';
 import Switcher from '@/components/Switcher.vue';
 import { searchByOptions } from '@/types/filters';
-import type { SearchByIds } from '@/types/filters';
+import type { SearchByIDs } from '@/types/filters';
 
 export default defineComponent({
   name: 'component-search-section',
@@ -25,7 +25,7 @@ export default defineComponent({
     onSearch(searchValue: string) {
       this.$emit('onSearch', searchValue);
     },
-    setSearchBy(searchBy: SearchByIds) {
+    setSearchBy(searchBy: SearchByIDs) {
       this.$store.dispatch('setSearchBy', searchBy);
     },
   },

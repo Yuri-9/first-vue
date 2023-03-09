@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent />
-  <main>
+  <main class="main">
     <router-view />
   </main>
   <Footer />
@@ -23,5 +23,10 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 195px);
 }
 </style>

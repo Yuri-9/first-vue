@@ -1,6 +1,7 @@
 <template>
   <section class="wrapper">
-    <ul class="cards-container">
+    <p v-if="!films.length" class="title">No films found</p>
+    <ul v-else class="cards-container">
       <li v-for="film in films" :key="film.id" class="cards-item">
         <Card :film="film" @onClick="onSelectFilm" />
       </li>
@@ -30,6 +31,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 100%;
   padding: 15px 120px;
   background-color: $gray-800;
   @include big-tablet-down {
@@ -49,5 +54,9 @@ export default defineComponent({
   flex: 1 1 320px;
   min-width: 300px;
   max-width: 400px;
+}
+
+.title {
+  font-size: 40px;
 }
 </style>

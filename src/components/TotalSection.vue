@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { SortByIds, sortByOptions } from '@/types/filters';
+import { SortByIDs, sortByOptions } from '@/types/filters';
 import Switcher from '@/components/Switcher.vue';
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
     };
   },
   methods: {
-    setSortBy(searchBy: SortByIds) {
+    setSortBy(searchBy: SortByIDs) {
       this.$store.dispatch('setSortBy', searchBy);
     },
   },
