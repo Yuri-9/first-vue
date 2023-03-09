@@ -13,6 +13,7 @@ module.exports = {
     'vuejs-accessibility/label-has-for': 'off',
     'implicit-arrow-linebreak': 'off',
     'no-param-reassign': 'off',
+    camelcase: 'off',
     'max-len': [
       'error',
       {

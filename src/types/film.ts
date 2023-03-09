@@ -1,11 +1,15 @@
 export interface IFilm {
-  id: string;
+  id: number;
   title: string;
-  url: string;
+  tagline: string;
+  vote_average: number;
+  vote_count: number;
   director: string;
-  year: number;
-  duration: number;
-  rating: number;
-  description: string;
-  genre: string[];
+  release_date: string;
+  poster_path: string;
+  overview: string;
+  budget: number;
+  revenue: number;
+  genres: string[];
+  runtime: number;
 }

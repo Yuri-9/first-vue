@@ -1,7 +1,7 @@
 <template>
   <form class="container" @submit.prevent="onSearch">
     <label class="label" aria-label="search">
-      <input type="text" name="search_input" class="input" placeholder="Search" v-model="searchValue" />
+      <input type="text" name="search_input" class="input" placeholder="Search" @input="handleChange($event)" :value="searchValue" />
       <SearchSVG v-if="!searchValue" class="svg" />
     </label>
     <Button type="submit" v-if="searchValue">Search</Button>
@@ -24,6 +24,13 @@ export default defineComponent({
   methods: {
     onSearch() {
       this.$emit('onSearch', this.searchValue);
+    },
+    handleChange(e: Event) {
+      const { value } = e.target as HTMLInputElement;
+      this.searchValue = value;
+      if (!value) {
+        this.$emit('onSearch', '');
+      }
     },
   },
 });

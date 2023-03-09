@@ -1,6 +1,6 @@
 <template>
-  <Header />
-  <main>
+  <HeaderComponent />
+  <main class="main">
     <router-view />
   </main>
   <Footer />
@@ -8,12 +8,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Header from '@/components/Header.vue';
+import HeaderComponent from '@/components/HeaderComponent.vue';
 import Footer from '@/components/Footer.vue';
 
 export default defineComponent({
   name: 'component-app',
-  components: { Header, Footer },
+  components: { HeaderComponent, Footer },
 });
 </script>
 
@@ -23,5 +23,10 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 195px);
 }
 </style>

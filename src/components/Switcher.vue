@@ -24,18 +24,17 @@ export default defineComponent({
   name: 'component-switcher',
   props: {
     title: String,
+    selectedOption: String,
     options: { type: Object as PropType<ISwitcher[]>, required: true },
-  },
-  data() {
-    return {
-      activeId: this.options?.[0].id,
-    };
   },
   methods: {
     onClick(optionId: string) {
-      this.activeId = optionId;
-
       this.$emit('onSelect', optionId);
+    },
+  },
+  computed: {
+    activeId() {
+      return this.selectedOption || this.options?.[0].id;
     },
   },
 });
