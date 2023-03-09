@@ -28,7 +28,7 @@ export default defineComponent({
   },
   computed: {
     totalCount() {
-      return `${this.total} movie found`;
+      return this.total ? `${this.total} movies found` : '';
     },
     selectedOption() {
       return this.$store.state.sortBy;

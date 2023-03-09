@@ -1,7 +1,7 @@
 <template>
   <SearchSection v-if="!selectedFilm" @onSearch="handleSearch" />
   <DescriptionSection v-else :film="selectedFilm" />
-  <TotalSection :total="totalCount" />
+  <TotalSection :total="films.length" />
   <ResultSection :films="films" @onSelectFilm="handleSelectFilm" />
 </template>
 
