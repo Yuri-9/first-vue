@@ -1,5 +1,5 @@
 <template>
-  <SearchSection v-if="!selectedFilm" />
+  <SearchSection v-if="!selectedFilm" @onSearch="handleSearch" />
   <DescriptionSection v-else :film="selectedFilm" />
   <TotalSection :total="totalCount" />
   <ResultSection :films="films" @onSelectFilm="handleSelectFilm" />
@@ -23,30 +23,16 @@ export default defineComponent({
   },
   data() {
     return {
-      filters: [
-        {
-          name: 'title',
-          id: 'title',
-        },
-        {
-          name: 'genre',
-          id: 'genre',
-        },
-      ],
+      searchValue: '',
       searchBy: 'title',
     };
   },
   methods: {
-    setSearchBy(id: string) {
-      console.log('id');
-
-      this.searchBy = id;
-    },
-    handleSearch(searchValue: string) {
-      console.log('searchValue', searchValue);
-    },
     handleSelectFilm(filmId: number) {
       this.$store.dispatch('setSelectedFilmId', filmId);
+    },
+    handleSearch(searchValue: string) {
+      this.searchValue = searchValue;
     },
   },
   computed: {
@@ -56,8 +42,9 @@ export default defineComponent({
     selectedFilm(): IFilm {
       return this.$store.getters.selectedFilm;
     },
-    films() {
-      return this.$store.state.films;
+
+    films(): IFilm[] {
+      return this.$store.getters.searchedFilms(this.searchValue);
     },
   },
 });

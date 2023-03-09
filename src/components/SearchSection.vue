@@ -1,8 +1,8 @@
 <template>
   <section class="wrapper">
     <h1 class="search_title">FIND YOUR MOVE</h1>
-    <Search @onSearch="handleSearch" />
-    <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" />
+    <Search @onSearch="onSearch" />
+    <Switcher title="Search by" :options="filters" @onSelect="setSearchBy" :selectedOption="selectedOption" />
   </section>
 </template>
 
@@ -10,37 +10,28 @@
 import { defineComponent } from 'vue';
 import Search from '@/components/Search.vue';
 import Switcher from '@/components/Switcher.vue';
+import { searchByOptions } from '@/types/filters';
+import type { SearchByIds } from '@/types/filters';
 
 export default defineComponent({
   name: 'component-search-section',
   components: { Search, Switcher },
   data() {
     return {
-      searchValue: '',
-      searchBy: 'title',
-      filters: [
-        {
-          name: 'title',
-          id: 'title',
-        },
-        {
-          name: 'genre',
-          id: 'genre',
-        },
-      ],
+      filters: searchByOptions,
     };
   },
   methods: {
-    onSearch() {
-      this.$emit('onSearch', this.searchValue);
+    onSearch(searchValue: string) {
+      this.$emit('onSearch', searchValue);
     },
-    setSearchBy(id: string) {
-      console.log('id');
-
-      this.searchBy = id;
+    setSearchBy(searchBy: SearchByIds) {
+      this.$store.dispatch('setSearchBy', searchBy);
     },
-    handleSearch(searchValue: string) {
-      console.log('searchValue', searchValue);
+  },
+  computed: {
+    selectedOption() {
+      return this.$store.state.searchBy;
     },
   },
 });
