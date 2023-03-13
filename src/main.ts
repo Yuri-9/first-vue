@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
-import { LazyLoadingPlugin } from '@/plugins';
+import { LazyLoadingPlugin, ScrollIntoView } from '@/plugins';
 import { store, key } from '@/store';
 import App from './App.vue';
 import router from './router';
 import './styles.scss';
-import ScrollIntoView from './plugins/ScrollIntoView';
 
 const app = createApp(App);
 

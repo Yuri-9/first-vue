@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span class="title">{{ title }}</span>
+    <span class="title" data-test="switcher-title">{{ title }}</span>
     <ul class="options">
       <li class="options_item" v-for="option in options" :key="option.id">
         <button class="options_button" :class="{ active: option.id === activeId }" @click="onClick(option.id)">
