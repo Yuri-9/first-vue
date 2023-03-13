@@ -1,14 +1,14 @@
 <template>
   <header class="header">
     <Logo />
-    <SearchSVG v-if="!!selectedFilm" class="icon-search" @click="onSearchClick" />
+    <SearchSvg v-if="!!selectedFilm" class="icon-search" @click="onSearchClick" />
   </header>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import Logo from '@/components/Logo.vue';
-import SearchSVG from '@/assets/search.svg';
+import SearchSvg from '@/components/svg/SearchSvg.vue';
 import { useStore } from '@/store';
 
 const store = useStore();
