@@ -2,7 +2,7 @@ import { SearchByIDs, SortByIDs } from '@/types/filters';
 import { IState } from './state';
 
 const getters = {
-  selectedFilm: (state: IState) => state.films.find((film) => film.id === state.selectedFilmId),
+  selectedFilm: (state: IState) => state.films.find((film) => film.id === state.selectedFilmId) || null,
   totalCountFilms: (state: IState) => state.films.length,
   searchedFilms: (state: IState) => (searchValue: string) => {
     const valueLoverCase = searchValue.toLowerCase();
