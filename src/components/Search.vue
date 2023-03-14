@@ -1,5 +1,5 @@
 <template>
-  <form class="container" @submit.prevent="onSearch">
+  <form data-test="search-form" class="container" @submit.prevent="onSearch">
     <label class="label" aria-label="search">
       <input
         type="text"
