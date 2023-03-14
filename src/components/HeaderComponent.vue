@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <Logo />
-    <SearchSvg v-if="!!selectedFilm" class="icon-search" @click="onSearchClick" />
+    <SearchSvg data-test="header-search-svg" v-if="!!selectedFilm" class="icon-search" @click="onSearchClick" />
   </header>
 </template>
 

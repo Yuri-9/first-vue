@@ -1,5 +1,5 @@
-import Button from '@/components/Button.vue';
 import { shallowMount, VueWrapper } from '@vue/test-utils';
+import Button from '@/components/Button.vue';
 
 describe('Button', () => {
   let wrapper: VueWrapper<any>;

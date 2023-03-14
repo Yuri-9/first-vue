@@ -6,7 +6,7 @@ import mutations from './mutations';
 import actions from './actions';
 import { IState, state } from './state';
 
-export const key: InjectionKey<Store<IState>> = Symbol('filmStore');
+export const key: InjectionKey<Store<IState>> | symbol = Symbol('filmStore');
 
 export const store = createStore({
   state,

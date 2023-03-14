@@ -35,6 +35,7 @@ describe('Switcher', () => {
 
   it('should be render with with empty props', async () => {
     const emptyProps = { title: '', selectedOption: '', options: [] };
+
     await wrapper.setProps(emptyProps);
 
     expect(wrapper.find('[data-test="switcher-title"]').text()).toBe('');
