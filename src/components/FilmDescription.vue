@@ -6,14 +6,14 @@
     <div class="summary">
       <div class="summary-header">
         <h1 class="summary-header_title">{{ film.title }}</h1>
-        <span class="summary-header_rating">{{ film.rating }}</span>
+        <span class="summary-header_rating">{{ film.vote_count }}</span>
       </div>
       <p class="range">{{ showGenres }}</p>
       <p class="addition">
-        <span> {{ film.year }}</span>
+        <span> {{ film.release_date }}</span>
         <span> {{ showDuration }}</span>
       </p>
-      <p class="description">{{ film.description }}</p>
+      <p class="description">{{ film.overview }}</p>
     </div>
   </div>
 </template>
@@ -30,14 +30,13 @@ export default defineComponent({
   },
   computed: {
     showGenres() {
-      return this.film.genre.join(' & ');
+      return this.film.genres.join(' & ');
     },
     showDuration() {
-      return `${this.film.duration} min`;
+      return `${this.film.runtime} min`;
     },
     imageUrl() {
-      // eslint-disable-next-line import/no-dynamic-require, global-require
-      return require(`@/assets/images/${this.film.url}`);
+      return this.film.poster_path;
     },
   },
 });
@@ -65,10 +64,15 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
   &-header {
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-content: space-between;
+    &_title {
+      text-align: left;
+    }
     &_rating {
       border: 1px solid $white;
       border-radius: 50%;
@@ -76,6 +80,7 @@ export default defineComponent({
       font-size: 28px;
       color: $light-green;
       font-weight: 100;
+      flex: 0 0 32px;
     }
   }
 }

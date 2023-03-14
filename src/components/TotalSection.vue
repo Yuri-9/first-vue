@@ -1,12 +1,13 @@
 <template>
   <section class="wrapper">
     <p class="total">{{ totalCount }}</p>
-    <Switcher title="Sort by" :options="options" @onSelect="setSearchBy" />
+    <Switcher title="Sort by" :options="options" @onSelect="setSortBy" :selectedOption="selectedOption" />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { SortByIDs, sortByOptions } from '@/types/filters';
 import Switcher from '@/components/Switcher.vue';
 
 export default defineComponent({
@@ -17,30 +18,20 @@ export default defineComponent({
   },
   data() {
     return {
-      searchValue: '',
-      searchBy: 'release_date',
-      options: [
-        {
-          name: 'Release date',
-          id: 'release_date',
-        },
-        {
-          name: 'Rating',
-          id: 'rating',
-        },
-      ],
+      options: sortByOptions,
     };
   },
   methods: {
-    setSearchBy(id: string) {
-      console.log('id');
-
-      this.searchBy = id;
+    setSortBy(searchBy: SortByIDs) {
+      this.$store.dispatch('setSortBy', searchBy);
     },
   },
   computed: {
     totalCount() {
-      return `${this.total} movie found`;
+      return this.total ? `${this.total} movies found` : '';
+    },
+    selectedOption() {
+      return this.$store.state.sortBy;
     },
   },
 });

@@ -25,7 +25,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "plugins/**/*.ts"
+    "plugins/**/*.ts",
+    "utils/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

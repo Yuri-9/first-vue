@@ -1,7 +1,7 @@
 <template>
-  <SearchSection v-if="!selectedFilm" />
+  <SearchSection v-if="!selectedFilm" @onSearch="handleSearch" />
   <DescriptionSection v-else :film="selectedFilm" />
-  <TotalSection :total="totalCount" />
+  <TotalSection :total="films.length" />
   <ResultSection :films="films" @onSelectFilm="handleSelectFilm" />
 </template>
 
@@ -11,9 +11,7 @@ import SearchSection from '@/components/SearchSection.vue';
 import DescriptionSection from '@/components/DescriptionSection.vue';
 import TotalSection from '@/components/TotalSection.vue';
 import ResultSection from '@/components/ResultSection.vue';
-import films from '@/store/films.json';
 import { IFilm } from '@/types/film';
-import store from '@/store';
 
 export default defineComponent({
   name: 'HomeView',
@@ -25,39 +23,28 @@ export default defineComponent({
   },
   data() {
     return {
-      filters: [
-        {
-          name: 'title',
-          id: 'title',
-        },
-        {
-          name: 'genre',
-          id: 'genre',
-        },
-      ],
+      searchValue: '',
       searchBy: 'title',
-      films,
     };
   },
   methods: {
-    setSearchBy(id: string) {
-      console.log('id');
-
-      this.searchBy = id;
+    handleSelectFilm(filmId: number) {
+      this.$store.dispatch('setSelectedFilmId', filmId);
     },
     handleSearch(searchValue: string) {
-      console.log('searchValue', searchValue);
-    },
-    handleSelectFilm(filmId: string) {
-      store.commit('setSelectedFilmId', filmId);
+      this.searchValue = searchValue;
     },
   },
   computed: {
     totalCount() {
-      return films.length;
+      return this.$store.getters.totalCountFilms;
     },
-    selectedFilm(): IFilm | null {
-      return films.find((film) => film.id === store.getters.getSelectedFilmId) || null;
+    selectedFilm(): IFilm {
+      return this.$store.getters.selectedFilm;
+    },
+
+    films(): IFilm[] {
+      return this.$store.getters.searchedFilms(this.searchValue);
     },
   },
 });
