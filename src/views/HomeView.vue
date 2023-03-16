@@ -47,5 +47,8 @@ export default defineComponent({
       return this.$store.getters.searchedFilms(this.searchValue);
     },
   },
+  mounted() {
+    this.$store.dispatch('getFilms');
+  },
 });
 </script>

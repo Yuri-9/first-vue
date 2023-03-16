@@ -1,3 +1,5 @@
+import { IError } from '@/types/error';
+import { IFilm } from '@/types/film';
 import { SearchByIDs, SortByIDs } from '@/types/filters';
 import { IState } from './state';
 
@@ -10,6 +12,12 @@ const mutations = {
   },
   SET_SORT_BY(state: IState, sortBy: SortByIDs) {
     state.sortBy = sortBy;
+  },
+  SET_FILMS(state: IState, films: IFilm[]) {
+    state.films = films;
+  },
+  SET_ERROR(state: IState, error: IError) {
+    state.error = error;
   },
 };
 
