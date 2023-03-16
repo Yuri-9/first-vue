@@ -2,7 +2,14 @@
   <SearchSection v-if="!selectedFilm" @onSearch="handleSearch" />
   <DescriptionSection v-else :film="selectedFilm" />
   <TotalSection :total="films.length" />
-  <ResultSection :films="films" @onSelectFilm="handleSelectFilm" />
+  <Suspense>
+    <template #default>
+      <ResultSection :films="films" @onSelectFilm="handleSelectFilm" />
+    </template>
+    <template #fallback>
+      <P class="loading">Loading...</P>
+    </template>
+  </Suspense>
 </template>
 
 <script lang="ts">
@@ -47,8 +54,13 @@ export default defineComponent({
       return this.$store.getters.searchedFilms(this.searchValue);
     },
   },
-  mounted() {
-    this.$store.dispatch('getFilms');
-  },
 });
 </script>
+<style lang="scss">
+  .loading {
+    flex: 1;
+    padding-top: 50px;
+    font-size: 20px;
+    background-color: $gray-800;
+  }
+</style>

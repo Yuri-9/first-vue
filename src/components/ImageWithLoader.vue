@@ -29,7 +29,7 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   position: relative;
-  & .error::after {
+  &.error::after {
   content: 'Image not available';
   position: absolute;
   top: 50%;
