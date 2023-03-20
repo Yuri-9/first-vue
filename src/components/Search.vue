@@ -1,21 +1,29 @@
 <template>
-  <form class="container" @submit.prevent="onSearch">
+  <form data-test="search-form" class="container" @submit.prevent="onSearch">
     <label class="label" aria-label="search">
-      <input type="text" name="search_input" class="input" placeholder="Search" @input="handleChange($event)" :value="searchValue" />
-      <SearchSVG v-if="!searchValue" class="svg" />
+      <input
+        type="text"
+        name="search_input"
+        class="input"
+        placeholder="Search"
+        @input="handleChange($event)"
+        :value="searchValue"
+        data-test="input-search"
+      />
+      <SearchSvg v-if="!searchValue" class="svg" data-test="svg-search" />
     </label>
-    <Button type="submit" v-if="searchValue">Search</Button>
+    <Button type="submit" v-if="searchValue" data-test="button-search">Search</Button>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Button from '@/components/Button.vue';
-import SearchSVG from '@/assets/search.svg';
+import SearchSvg from '@/components/svg/SearchSvg.vue';
 
 export default defineComponent({
   name: 'component-search',
-  components: { Button, SearchSVG },
+  components: { Button, SearchSvg },
   data() {
     return {
       searchValue: '',

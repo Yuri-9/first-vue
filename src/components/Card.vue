@@ -1,11 +1,11 @@
 <template>
-  <div class="card" @click="onClick" @keydown.enter="onClick" tabindex="0">
+  <div data-test="card-film" class="card" @click="onClick" @keydown.enter="onClick" tabindex="0">
     <ImageWithLoader :src="imageUrl" :alt="film.title" />
     <div class="summary">
-      <h2>{{ film.title }}</h2>
-      <p class="year">{{ year }}</p>
+      <h2 data-test="card-title">{{ film.title }}</h2>
+      <p data-test="card-year" class="year">{{ year }}</p>
     </div>
-    <p class="genre">{{ showGenres }}</p>
+    <p data-test="card-genre" class="genre">{{ showGenres }}</p>
   </div>
 </template>
 

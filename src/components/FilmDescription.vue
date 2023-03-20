@@ -11,7 +11,7 @@
       <p class="range">{{ showGenres }}</p>
       <p class="addition">
         <span> {{ film.release_date }}</span>
-        <span> {{ showDuration }}</span>
+        <span class="duration"> {{ showDuration }}</span>
       </p>
       <p class="description">{{ film.overview }}</p>
     </div>

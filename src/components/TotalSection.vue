@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper">
-    <p class="total">{{ totalCount }}</p>
-    <Switcher title="Sort by" :options="options" @onSelect="setSortBy" :selectedOption="selectedOption" />
+    <p class="total" data-test="total-count">{{ totalCount }}</p>
+    <Switcher data-test="switcher-sort" title="Sort by" :options="options" @onSelect="setSortBy" :selectedOption="selectedOption" />
   </section>
 </template>
 
@@ -22,8 +22,8 @@ export default defineComponent({
     };
   },
   methods: {
-    setSortBy(searchBy: SortByIDs) {
-      this.$store.dispatch('setSortBy', searchBy);
+    setSortBy(sortBy: SortByIDs) {
+      this.$store.dispatch('setSortBy', sortBy);
     },
   },
   computed: {
