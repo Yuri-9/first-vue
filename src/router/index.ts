@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import SearchSection from '@/components/SearchSection.vue';
+import DescriptionSection from '@/components/DescriptionSection.vue';
 import HomeView from '../views/HomeView.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -6,9 +8,21 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: HomeView,
+    children: [
+      {
+        path: '',
+        name: 'search',
+        component: SearchSection,
+      },
+      {
+        path: 'films/:id/',
+        name: 'films',
+        component: DescriptionSection,
+      },
+    ],
   },
   {
-    path: '/about',
+    path: '/about/',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

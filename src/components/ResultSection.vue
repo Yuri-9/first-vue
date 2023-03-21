@@ -10,7 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, onMounted } from 'vue';
+import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
 import type { PropType } from 'vue';
 import Card from '@/components/Card.vue';
 import { IFilm } from '@/types/film';
@@ -18,15 +19,16 @@ import { useStore } from '@/store';
 import FilmsService from '@/api/films';
 
 const store = useStore();
+const router = useRouter();
 defineProps({
   films: { type: Object as PropType<IFilm[]>, required: true },
 });
-const emits = defineEmits(['onSelectFilm']);
 
-const onSelectFilm = (idFilm: string) => emits('onSelectFilm', idFilm);
+const onSelectFilm = (filmId: string) => {
+  router.push({ name: 'films', params: { id: filmId } });
+};
 
 await FilmsService.getFilms().then((films) => store.dispatch('setFilms', films));
-
 </script>
 
 <style scoped lang="scss">

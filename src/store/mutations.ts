@@ -10,6 +10,9 @@ const mutations = {
   SET_SEARCH_BY(state: IState, searchBy: SearchByIDs) {
     state.searchBy = searchBy;
   },
+  SET_SEARCH_VALUE(state: IState, searchValue: SearchByIDs) {
+    state.searchValue = searchValue;
+  },
   SET_SORT_BY(state: IState, sortBy: SortByIDs) {
     state.sortBy = sortBy;
   },

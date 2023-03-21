@@ -37,6 +37,7 @@ describe('getters', () => {
   const createState = (initialState: any) => {
     const state = {
       films: mockFilms,
+      searchValue: '',
       ...initialState,
     } as IState;
     return state;
@@ -44,52 +45,47 @@ describe('getters', () => {
 
   it('selectedFilm should be return current film', () => {
     const state = createState({ selectedFilmId: mockFilms[2].id });
-    expect(getters.selectedFilm(state)).toEqual(state.films[2]);
+    expect(getters.selectedFilm(state)(3)).toEqual(state.films[2]);
   });
 
   it('selectedFilm should be return null if there is no selectedFilm', () => {
     const state = createState(null);
-    expect(getters.selectedFilm(state)).toBe(null);
-  });
-
-  it('totalCountFilms returns number of films', () => {
-    const state = createState(null);
-    expect(getters.totalCountFilms(state)).toBe(mockFilms.length);
+    expect(getters.selectedFilm(state)(123)).toBe(null);
   });
 
   it('searchedFilms returns films are filtered by TITLE and sorted RELEASE_DATE', () => {
-    const state = createState({ searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RELEASE_DATE });
+    const state = createState({ searchValue: 'cat', searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RELEASE_DATE });
 
-    expect(getters.searchedFilms(state)('cat').map(({ id }) => id)).toEqual([4, 1]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([4, 1]);
   });
 
   it('searchedFilms returns films are filtered by GENRE and sorted RELEASE_DATE', () => {
-    const state = createState({ searchBy: SearchByIDs.GENRE, sortBy: SortByIDs.RELEASE_DATE });
+    const state = createState({ searchValue: 'act', searchBy: SearchByIDs.GENRE, sortBy: SortByIDs.RELEASE_DATE });
 
-    expect(getters.searchedFilms(state)('act').map(({ id }) => id)).toEqual([4, 1, 2]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([4, 1, 2]);
   });
 
   it('searchedFilms returns all films because searchBy is NOT bad and sorted RELEASE_DATE', () => {
-    const state = createState({ sortBy: SortByIDs.RELEASE_DATE });
+    const state = createState({ searchValue: 'act', sortBy: SortByIDs.RELEASE_DATE });
 
-    expect(getters.searchedFilms(state)('act').map(({ id }) => id)).toEqual([4, 3, 1, 2]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([4, 3, 1, 2]);
   });
 
   it('searchedFilms returns films are filtered by TITLE and sorted RELEASE_DATE', () => {
-    const state = createState({ searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RELEASE_DATE });
+    const state = createState({ searchValue: '', searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RELEASE_DATE });
 
-    expect(getters.searchedFilms(state)('').map(({ id }) => id)).toEqual([4, 3, 1, 2]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([4, 3, 1, 2]);
   });
 
   it('searchedFilms returns films are filtered by TITLE and sorted RATING', () => {
-    const state = createState({ searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RATING });
+    const state = createState({ searchValue: '', searchBy: SearchByIDs.TITLE, sortBy: SortByIDs.RATING });
 
-    expect(getters.searchedFilms(state)('').map(({ id }) => id)).toEqual([3, 1, 4, 2]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([3, 1, 4, 2]);
   });
 
   it('searchedFilms returns films are filtered by TITLE and sort is bad', () => {
-    const state = createState({ searchBy: SearchByIDs.TITLE });
+    const state = createState({ searchValue: '', searchBy: SearchByIDs.TITLE });
 
-    expect(getters.searchedFilms(state)('').map(({ id }) => id)).toEqual([1, 2, 3, 4]);
+    expect(getters.searchedFilms(state).map(({ id }) => id)).toEqual([1, 2, 3, 4]);
   });
 });

@@ -1,10 +1,12 @@
 import { ActionTree } from 'vuex';
-import FilmsService from '@/api/films';
 import { IState } from './state';
 
 const actions: ActionTree<IState, IState> | undefined = {
   setSelectedFilmId({ commit }, filmId) {
     commit('SET_SELECTED_FILM_ID', filmId);
+  },
+  setSearchValue({ commit }, searchValue) {
+    commit('SET_SEARCH_VALUE', searchValue);
   },
   setSearchBy({ commit }, searchBy) {
     commit('SET_SEARCH_BY', searchBy);
@@ -24,7 +26,6 @@ const actions: ActionTree<IState, IState> | undefined = {
     //   commit('SET_ERROR', e);
     // }
   },
-
 };
 
 export default actions;

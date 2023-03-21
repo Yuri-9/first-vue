@@ -2,10 +2,6 @@ const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: './',
-  outputDir: 'dist',
-  productionSourceMap: false,
-  assetsDir: 'assets',
   chainWebpack: (config) => {
     const imgRule = config.module.rule('images');
     imgRule

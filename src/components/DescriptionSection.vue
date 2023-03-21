@@ -1,20 +1,24 @@
 <template>
   <section class="wrapper">
-    <FilmDescription :film="film" />
+    <FilmDescription v-if="!!selectedFilm" :film="selectedFilm" />
+    <div v-else>Film not found</div>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
 import FilmDescription from '@/components/FilmDescription.vue';
 import { IFilm } from '@/types/film';
 
 export default defineComponent({
   name: 'component-description-section',
   components: { FilmDescription },
-  props: {
-    film: { type: Object as PropType<IFilm>, required: true },
+
+  computed: {
+    selectedFilm(): IFilm {
+      const filmId = +this.$route.params.id;
+      return this.$store.getters.selectedFilm(filmId);
+    },
   },
 });
 </script>

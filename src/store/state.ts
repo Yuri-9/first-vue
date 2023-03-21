@@ -5,6 +5,7 @@ import { IError } from '@/types/error';
 
 export interface IState {
   selectedFilmId: null | number;
+  searchValue: string;
   searchBy: SearchByIDs;
   sortBy: SortByIDs;
   films: IFilm[];
@@ -13,6 +14,7 @@ export interface IState {
 
 const initialState: IState = {
   selectedFilmId: null,
+  searchValue: '',
   searchBy: SearchByIDs.TITLE,
   sortBy: SortByIDs.RELEASE_DATE,
   films: [],

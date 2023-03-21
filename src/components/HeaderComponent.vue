@@ -1,22 +1,21 @@
 <template>
   <header class="header">
     <Logo />
-    <SearchSvg data-test="header-search-svg" v-if="!!selectedFilm" class="icon-search" @click="onSearchClick" />
+    <router-link to="/" v-if="hasSelectedFilm">
+      <SearchSvg data-test="header-search-svg" class="icon-search" />
+    </router-link>
   </header>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Logo from '@/components/Logo.vue';
 import SearchSvg from '@/components/svg/SearchSvg.vue';
-import { useStore } from '@/store';
 
-const store = useStore();
-const selectedFilm = computed(() => store.getters.selectedFilm);
+const route = useRoute();
 
-const onSearchClick = () => {
-  store.dispatch('setSelectedFilmId', null);
-};
+const hasSelectedFilm = computed(() => route.params.id);
 </script>
 
 <style scoped lang="scss">
