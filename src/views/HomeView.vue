@@ -1,9 +1,9 @@
 <template>
   <router-view></router-view>
-  <TotalSection :total="films.length" />
+  <TotalSection />
   <Suspense>
     <template #default>
-      <ResultSection :films="films" />
+      <ResultSection />
     </template>
     <template #fallback>
       <p class="loading">Loading...</p>
@@ -15,7 +15,6 @@
 import { defineComponent } from 'vue';
 import TotalSection from '@/components/TotalSection.vue';
 import ResultSection from '@/components/ResultSection.vue';
-import { IFilm } from '@/types/film';
 
 export default defineComponent({
   name: 'HomeView',
@@ -23,19 +22,9 @@ export default defineComponent({
     TotalSection,
     ResultSection,
   },
-  data() {
-    return {
-      searchBy: 'title',
-    };
-  },
-  computed: {
-    films(): IFilm[] {
-      return this.$store.getters.searchedFilms;
-    },
-  },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .loading {
   flex: 1;
   padding-top: 50px;

@@ -21,6 +21,8 @@ const hasSelectedFilm = computed(() => route.params.id);
 <style scoped lang="scss">
 .header {
   height: 60px;
+  position: relative;
+  z-index: 2;
   background-color: $black-transparent;
   backdrop-filter: blur(3px);
   padding: 0 55px;
