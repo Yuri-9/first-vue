@@ -29,6 +29,10 @@ export default {
             el.addEventListener('load', () => {
               (el.parentNode as HTMLElement).classList.remove(parentClassName);
             });
+            el.addEventListener('error', () => {
+              (el.parentNode as HTMLElement).classList.add('error');
+              el.setAttribute('src', 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+            });
             el.src = el.dataset.src || el.src;
           }
         };

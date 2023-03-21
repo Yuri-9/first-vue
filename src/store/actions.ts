@@ -1,4 +1,5 @@
 import { ActionTree } from 'vuex';
+import FilmsService from '@/api/films';
 import { IState } from './state';
 
 const actions: ActionTree<IState, IState> | undefined = {
@@ -11,6 +12,19 @@ const actions: ActionTree<IState, IState> | undefined = {
   setSortBy({ commit }, sortBy) {
     commit('SET_SORT_BY', sortBy);
   },
+  async setFilms({ commit }, films) {
+    commit('SET_FILMS', films);
+
+    // moved getFilms to component
+
+    // try {
+    //   const films = await FilmsService.getFilms();
+    //   commit('SET_FILMS', films);
+    // } catch (e) {
+    //   commit('SET_ERROR', e);
+    // }
+  },
+
 };
 
 export default actions;

@@ -9,24 +9,24 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps, defineEmits, onMounted } from 'vue';
 import type { PropType } from 'vue';
 import Card from '@/components/Card.vue';
 import { IFilm } from '@/types/film';
+import { useStore } from '@/store';
+import FilmsService from '@/api/films';
 
-export default defineComponent({
-  name: 'component-result-section',
-  components: { Card },
-  props: {
-    films: { type: Object as PropType<IFilm[]>, required: true },
-  },
-  methods: {
-    onSelectFilm(idFilm: string) {
-      this.$emit('onSelectFilm', idFilm);
-    },
-  },
+const store = useStore();
+defineProps({
+  films: { type: Object as PropType<IFilm[]>, required: true },
 });
+const emits = defineEmits(['onSelectFilm']);
+
+const onSelectFilm = (idFilm: string) => emits('onSelectFilm', idFilm);
+
+await FilmsService.getFilms().then((films) => store.dispatch('setFilms', films));
+
 </script>
 
 <style scoped lang="scss">
