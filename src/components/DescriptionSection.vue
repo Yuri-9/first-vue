@@ -15,9 +15,16 @@ export default defineComponent({
   components: { FilmDescription },
 
   computed: {
-    selectedFilm(): IFilm {
-      const filmId = +this.$route.params.id;
-      return this.$store.getters.selectedFilm(filmId);
+    selectedFilm(): IFilm | null {
+      return this.$store.state.selectedFilm;
+    },
+    selectedFilmId() {
+      return +this.$route.params.id;
+    },
+  },
+  watch: {
+    selectedFilmId() {
+      this.$store.dispatch('getFilmById', +this.$route.params.id);
     },
   },
 });

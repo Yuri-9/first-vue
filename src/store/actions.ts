@@ -1,10 +1,8 @@
 import { ActionTree } from 'vuex';
+import FilmsService from '@/api/films';
 import { IState } from './state';
 
 const actions: ActionTree<IState, IState> | undefined = {
-  setSelectedFilmId({ commit }, filmId) {
-    commit('SET_SELECTED_FILM_ID', filmId);
-  },
   setSearchValue({ commit }, searchValue) {
     commit('SET_SEARCH_VALUE', searchValue);
   },
@@ -14,17 +12,19 @@ const actions: ActionTree<IState, IState> | undefined = {
   setSortBy({ commit }, sortBy) {
     commit('SET_SORT_BY', sortBy);
   },
+  setPage({ commit }, page) {
+    commit('SET_PAGE', page);
+  },
   async setFilms({ commit }, films) {
     commit('SET_FILMS', films);
-
-    // moved getFilms to component
-
-    // try {
-    //   const films = await FilmsService.getFilms();
-    //   commit('SET_FILMS', films);
-    // } catch (e) {
-    //   commit('SET_ERROR', e);
-    // }
+  },
+  async getFilmById({ commit }, filmId) {
+    try {
+      const film = await FilmsService.getFilmById(filmId);
+      commit('GET_FILM_BY_ID', film);
+    } catch (e) {
+      commit('SET_ERROR', e);
+    }
   },
 };
 

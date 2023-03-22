@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeLayout,
     children: [
       {
-        path: '/',
+        path: '',
         name: 'HomeView',
         component: HomeView,
         children: [
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
             component: SearchSection,
           },
           {
-            path: 'films/:id/',
+            path: 'films/:id',
             name: 'films',
             component: DescriptionSection,
           },
@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/about/',
+    path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
