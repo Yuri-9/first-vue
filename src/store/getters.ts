@@ -2,17 +2,16 @@ import { SearchByIDs, SortByIDs } from '@/types/filters';
 import { IState } from './state';
 
 const getters = {
-  selectedFilm: (state: IState) => state.films.find((film) => film.id === state.selectedFilmId) || null,
-  totalCountFilms: (state: IState) => state.films.length,
-  searchedFilms: (state: IState) => (searchValue: string) => {
-    const valueLoverCase = searchValue.toLowerCase();
+  selectedFilm: (state: IState) => (filmId: number) => state.films.find((film) => film.id === filmId) || null,
+  searchedFilms: (state: IState) => {
+    const valueLowerCase = state.searchValue.toLowerCase();
 
     const filteredFilms = state.films.filter((film) => {
       if (state.searchBy === SearchByIDs.TITLE) {
-        return film.title.toLowerCase().includes(valueLoverCase);
+        return film.title.toLowerCase().includes(valueLowerCase);
       }
       if (state.searchBy === SearchByIDs.GENRE) {
-        return film.genres.some((genre) => genre.toLowerCase().includes(valueLoverCase));
+        return film.genres.some((genre) => genre.toLowerCase().includes(valueLowerCase));
       }
       return true;
     });

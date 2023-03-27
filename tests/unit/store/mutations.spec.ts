@@ -4,14 +4,8 @@ import { SearchByIDs, SortByIDs } from '@/types/filters';
 
 describe('mutations', () => {
   const state = {} as IState;
-  const filmId = 2;
   const searchBy = SearchByIDs.TITLE;
   const sortBy = SortByIDs.RATING;
-
-  it('SET_SELECTED_FILM_ID', () => {
-    mutations.SET_SELECTED_FILM_ID(state, filmId);
-    expect(state.selectedFilmId).toBe(filmId);
-  });
 
   it('SET_SEARCH_BY', () => {
     mutations.SET_SEARCH_BY(state, searchBy);

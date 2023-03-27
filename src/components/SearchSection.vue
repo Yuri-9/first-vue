@@ -23,7 +23,7 @@ export default defineComponent({
   },
   methods: {
     onSearch(searchValue: string) {
-      this.$emit('onSearch', searchValue);
+      this.$store.dispatch('setSearchValue', searchValue);
     },
     setSearchBy(searchBy: SearchByIDs) {
       this.$store.dispatch('setSearchBy', searchBy);

@@ -1,7 +1,7 @@
 <template>
-  <a href="#" class="logo">
+  <router-link to="/" class="logo">
     <img v-lazyLoading class="logo-image" :data-src="require(`@/assets/logo.png`)" alt="Netflix roulette" />
-  </a>
+  </router-link>
 </template>
 
 <script lang="ts">

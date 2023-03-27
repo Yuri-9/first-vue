@@ -1,11 +1,34 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import SearchSection from '@/components/SearchSection.vue';
+import DescriptionSection from '@/components/DescriptionSection.vue';
+import HomeLayout from '../views/HomeLayout.vue';
 import HomeView from '../views/HomeView.vue';
+import PageNotFoundView from '../views/PageNotFoundView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: HomeLayout,
+    children: [
+      {
+        path: '',
+        name: 'HomeView',
+        component: HomeView,
+        children: [
+          {
+            path: '',
+            name: 'search',
+            component: SearchSection,
+          },
+          {
+            path: 'films/:id',
+            name: 'films',
+            component: DescriptionSection,
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/about',
@@ -15,6 +38,8 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
+
+  { path: '/:pathMatch(.*)*', name: 'PageNotFound', component: PageNotFoundView },
 ];
 
 const router = createRouter({

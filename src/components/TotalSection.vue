@@ -13,9 +13,6 @@ import Switcher from '@/components/Switcher.vue';
 export default defineComponent({
   name: 'component-total-section',
   components: { Switcher },
-  props: {
-    total: Number,
-  },
   data() {
     return {
       options: sortByOptions,
@@ -28,7 +25,8 @@ export default defineComponent({
   },
   computed: {
     totalCount() {
-      return this.total ? `${this.total} movies found` : '';
+      const totalFilms = this.$store.getters.searchedFilms.length;
+      return totalFilms ? `${totalFilms} movies found` : '';
     },
     selectedOption() {
       return this.$store.state.sortBy;

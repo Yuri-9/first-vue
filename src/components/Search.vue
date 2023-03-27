@@ -26,7 +26,7 @@ export default defineComponent({
   components: { Button, SearchSvg },
   data() {
     return {
-      searchValue: '',
+      searchValue: this.$store.state.searchValue,
     };
   },
   methods: {
