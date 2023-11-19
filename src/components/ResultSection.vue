@@ -20,7 +20,7 @@ const store = useStore();
 const router = useRouter();
 
 const onSelectFilm = (filmId: string) => {
-  router.push({ name: 'films', params: { id: filmId } });
+  router.push({ name: 'films', params: { id: filmId }, query: { name: 'tt' } });
 };
 const films = computed(() => store.getters.searchedFilms);
 

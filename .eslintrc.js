@@ -14,6 +14,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'no-param-reassign': 'off',
     'lines-between-class-members': 'off',
+    'import/prefer-default-export': 'off',
     camelcase: 'off',
     'max-len': [
       'error',
@@ -29,19 +30,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-      ],
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
       env: {
         jest: true,
       },
     },
     {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-      ],
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
       env: {
         jest: true,
       },

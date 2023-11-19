@@ -4,19 +4,15 @@
     <div class="title">prop: {{ title }}</div>
     <div class="title">dataState: {{ dataState }}</div>
     <div class="title">computed: {{ constWithString }}</div>
-    <div class="title" v-bind:[nameAttr]="`tutId ${count}`">
-      computed fullName: {{ fullName }}
-    </div>
+    <div class="title" v-bind:[nameAttr]="`tutId ${count}`">computed fullName: {{ fullName }}</div>
     <button @click="onClick('Setup')">button</button>
     <div class="title">vuex sortBy: {{ sortBy }}</div>
-    <HelloWorld :msg="count"/>
+    <HelloWorld :msg="count" />
   </div>
 </template>
 
 <script setup>
-import {
-  ref, reactive, computed, defineProps, defineEmits, onMounted, watch,
-} from 'vue';
+import { ref, reactive, computed, defineProps, defineEmits, onMounted, watch } from 'vue';
 import { useStore } from '@/store';
 import HelloWorld from './HelloWorld.vue';
 
@@ -61,9 +57,8 @@ watch(
   (newValue, oldValue) => {
     // ...
   },
-  { deep: true },
+  { deep: true }
 );
-
 </script>
 
 <style>
